@@ -1,4 +1,4 @@
-# Stream Flare
+# Event Flare
 ![Static Badge](https://img.shields.io/badge/version-1.0.0-blue)
 ![Static Badge](https://img.shields.io/badge/build-passing-green)
 
@@ -18,7 +18,7 @@ Effortlessly stream real-time events from your server to clients using Server-Se
 
 ## Installation
 ```
-    npm install stream-flare
+    npm install event-flare
 ```
 
 ## Usage
@@ -27,7 +27,7 @@ Effortlessly stream real-time events from your server to clients using Server-Se
 
 #### Express Server
 ```typescript
-import { Session } from "stream-flare"
+import { Session } from "event-flare"
 import express from "express"
 
 const app = express()
@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
 
 #### Node.js http module
 ```typescript
-import { Session } from "stream-flare"
+import { Session } from "event-flare"
 import http from "http"
 
 http.createServer((req, res) => {
@@ -58,7 +58,7 @@ http.createServer((req, res) => {
 
 #### Koa
 ```typescript
-import { Session } from "stream-flare"
+import { Session } from "event-flare"
 import { PassThrough } from "stream"
 import Koa from "koa"
 
@@ -142,10 +142,13 @@ broadcastStream.register(session)
 The following code examples demonstrate both usages.
 
 ```typescript
-//Session registration
+import { BroadcastStream } from "event-flare"
+
 const channelId = "AAPL-subscribers"
 const broadcastStream = new BroadcastStream(channelId)
 const session = new Session(req, res)
+
+//Session registration
 broadcastStream.register(session)
 const dataToSend = {
     stockName: "AAPL",
@@ -158,8 +161,11 @@ broadcastStream.broadcastAll(JSON.stringify(dataToSend))
 ...
 ```
 
+----
+
 ```typescript
-//Session registration
+import { BroadcastStream } from "event-flare"
+
 const channelId = "AAPL-subscribers"
 const broadcastStream = new BroadcastStream(channelId)
 
@@ -176,7 +182,7 @@ const dataToSend = {
     currentStockPrice: "245.65"
 }
 
-//send message to all subscribers in that channel
+//send message to some subscribers in that channel
 broadcastStream.broadcastSome(JSON.stringify(dataToSend), [session1, session2])
 
 ...

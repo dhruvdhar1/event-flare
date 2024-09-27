@@ -1,5 +1,5 @@
 {
-  "name": "stream-flare",
+  "name": "event-flare",
   "version": "1.0.0",
   "description": "Stream events from server to client seemlessly and reliably with Server sent events",
   "homepage": "https://github.com/dhruvdhar1/event-flare",
