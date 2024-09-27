@@ -17,7 +17,6 @@ export class BroadcastStream extends EventEmitter implements IBroadcastStream {
     }
 
     register(session: Session) {
-        console.log("registering session: ", session.getSessionId())
         if(session.getConnectionState() !== CONNECTION_STATE.CONNECTED) {
             throw new Error(Errors.ERR_RGISTERING_INVALID_SESSION)
         }
@@ -25,7 +24,6 @@ export class BroadcastStream extends EventEmitter implements IBroadcastStream {
         this.emit("session-registered", session.getSessionId())
         
         session.on("session-closed", (sessionId) => {
-            console.log("de-registering session: ", sessionId)
             this.deregister(sessionId)
         })
     }
@@ -35,7 +33,6 @@ export class BroadcastStream extends EventEmitter implements IBroadcastStream {
             return false
         }
         this.sessions.delete(sessionId)
-        console.log("de-registration complete: ", sessionId)
         this.emit("session-deregistered", sessionId)
         return true
     }
@@ -59,30 +56,3 @@ export class BroadcastStream extends EventEmitter implements IBroadcastStream {
         this.emit("broadcast-success", this.channelId)
     }
 }
-
-/** 
- * USAGE: SESSION REGISTRATION { BroadcastStream }
- * const sessionMap = new Map()
- * const session = new Streamr(req, res)
- * if(sessionMap.has("microsoft-org")) {
- *      sessionMap.get("microsoft-org").register(session)
- * } else {
- *      const microsoftSession = new BroadcastStream("microsoft-org")
- *      sessionMap.set("microsoft-org", microsoftSession)
- *      sessionMap.get("microsoft-org").register(session)
- * }
-*/
-
-/**
- * SESSION DEREGISTRATION
- * const sessionIdToEvict = "xxxx-xxxx-xxxx-xxxx"
- * sessionMap.get("microsoft-org").deregister(sessionIdToEvict)
- * 
- */
-
-/**
- * USAGE: MESSAGE DISPATCH
- * const channelId = "microsoft-org"
- * sessionMap.get("microsoft-org").broadcast("hello")
- * 
- */
