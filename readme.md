@@ -202,3 +202,15 @@ broadcastStream.deregister(sessionIdToEvict)
 ```typescript
 const totalConnections = broadcastStream.getActiveConnections()
 ```
+
+### Event Emitter:
+Both `Session` and `BroadcastStream` extends `EventEmitter` and emit the following events:
+- `message-sent`: event is emitted at the end of `sendMessage()` method, after an event is sent to client.
+
+- `session-closed`: event is emitted when a client session is disconnected. <b><span style="color:hsl(341.51deg 89.9% 63.38%)">Note that if a client session is bound to a broadcast channel, closing the session also evists it from the broadcast channel.</b></span>
+
+- `session-registered`: event is emitted when a client session is registered to a `BroadcastStream` object.
+
+- `session-deregistered`: event is emitted when a client session is deregistered from a `BroadcastStream` object.
+
+- `broadcast-success`: event is emitted after the message is sent to some/ all sessions registered in the broadcast channel.

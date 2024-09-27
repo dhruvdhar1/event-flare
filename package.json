@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Stream events from server to client seemlessly and reliably with Server sent events",
   "homepage": "https://github.com/dhruvdhar1/event-flare",
+  "keywords": ["sse", "server-sent-events", "server sent events"],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

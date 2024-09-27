@@ -16,12 +16,7 @@ export enum CONNECTION_STATE {
 }
 
 /**
- * - Add support for broadcasting -- done
- * - Add support for retry, last event id -- done
- * - Add event emitters on operations -- done
- * - Add support for named events -- done
  * - test retry mechanism for single and broadcast session, what if the client goes of network anmd connects back?
- * - Add express support -- done
  */
 export class Session extends EventEmitter implements ISession {
     private req: http.IncomingMessage;
