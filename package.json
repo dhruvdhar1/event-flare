@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Stream events from server to client seemlessly and reliably with Server sent events",
   "homepage": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "run": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dhruv Dhar",
