@@ -214,3 +214,7 @@ Both `Session` and `BroadcastStream` extends `EventEmitter` and emit the followi
 - `session-deregistered`: event is emitted when a client session is deregistered from a `BroadcastStream` object.
 
 - `broadcast-success`: event is emitted after the message is sent to some/ all sessions registered in the broadcast channel.
+
+License
+-------
+This project is licensed under the `MIT License`
