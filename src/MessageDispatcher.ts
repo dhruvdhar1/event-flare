@@ -3,7 +3,7 @@ import { Stream } from "stream";
 import { MessageTransformer } from "./MessageTransformer";
 import { IMessageOptions } from "./interfaces/IMessageOptions";
 
-export class MessageDipatcher {
+export class MessageDispatcher {
     private res: http.ServerResponse<http.IncomingMessage> & { req: http.IncomingMessage; };
 
     constructor(res: http.ServerResponse<http.IncomingMessage> & { req: http.IncomingMessage; }) {

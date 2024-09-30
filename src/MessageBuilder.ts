@@ -6,6 +6,7 @@ export class MessageBuidler {
     }
 
     id(id: string): MessageBuidler {
+        if(!id) return this
         this.msg = `id:${id}\n${this.msg}`
         return this
     }
@@ -22,6 +23,7 @@ export class MessageBuidler {
     }
 
     data(data: string): MessageBuidler {
+        if(!data) return this
         const sanitizedData = this.sanitizeData(data)
         this.msg = `${this.msg}\data:${sanitizedData}`
         return this

@@ -3,16 +3,26 @@
   "version": "1.0.1",
   "description": "Stream events from server to client seemlessly and reliably with Server sent events",
   "homepage": "https://github.com/dhruvdhar1/event-flare",
-  "keywords": ["sse", "server-sent-events", "server sent events"],
+  "keywords": [
+    "sse",
+    "server-sent-events",
+    "server sent events"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test-coverage": "jest --coverage"
   },
   "author": "Dhruv Dhar",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-typescript": "^7.24.7",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
     "typescript": "^5.6.2"
   }
 }

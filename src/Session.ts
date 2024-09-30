@@ -3,7 +3,7 @@ import { parse } from "url";
 import { Readable } from "stream";
 import { randomUUID } from "crypto";
 import { Errors } from "./error";
-import { MessageDipatcher } from "./MessageDispatcher";
+import { MessageDispatcher } from "./MessageDispatcher";
 import { DEFAULT_HEARTBEAT_INTERVAL, DEFAULT_HISTORY_SIZE, DEFAULT_RETRY_INTERVAL } from "./constants";
 import { IOptions } from "./interfaces/IOptions";
 import { ISession } from "./interfaces/ISession";
@@ -23,7 +23,7 @@ export class Session extends EventEmitter implements ISession {
     private res: http.ServerResponse<http.IncomingMessage> & { req: http.IncomingMessage; };
     private heartbeatIntervalDuration: number = DEFAULT_HEARTBEAT_INTERVAL
     private heartbeatInterval: NodeJS.Timeout | undefined;
-    private messageDispatcher: MessageDipatcher
+    private messageDispatcher: MessageDispatcher
     private connectionState: CONNECTION_STATE = CONNECTION_STATE.DISCONNECTED
     private messageRetryInterval: number = DEFAULT_RETRY_INTERVAL
     private readStream: Readable
@@ -54,7 +54,7 @@ export class Session extends EventEmitter implements ISession {
         }
 
         this.sessionId = options?.sessionId || randomUUID()
-        this.messageDispatcher = new MessageDipatcher(res)
+        this.messageDispatcher = new MessageDispatcher(res)
         this.historySize = options?.historySize || DEFAULT_HISTORY_SIZE
         this.messageRetryInterval = options?.retryInterval || DEFAULT_RETRY_INTERVAL
         this.heartbeatIntervalDuration = options?.heartbeatInterval || DEFAULT_HEARTBEAT_INTERVAL
@@ -66,6 +66,7 @@ export class Session extends EventEmitter implements ISession {
         this.sendHeartbeatMsg()
 
         this.connectionState = CONNECTION_STATE.CONNECTED
+        this.emit("session-connected", this.sessionId)
         this.req.once("close", () => this.close())
         this.res.once("close", () => this.close())
     }

@@ -14,5 +14,14 @@
     "skipLibCheck": true,                     
     "sourceMap": true,
     "declaration": true
-  }
+  },
+  "include": [
+    "./**/*"
+  ],
+  "exclude": [
+    "./babel.config.js",
+    "./jest.config.js",
+    "./dist/**/*",
+    "./coverage/**/*",
+  ] 
 }

@@ -17,7 +17,7 @@ export class MessageTransformer extends Transform {
     _transform(chunk: string, encoding: any, callback: () => void) {
         const { msg, id, eventName }: IEvent = JSON.parse(chunk.toString())
 
-        const mb: MessageBuidler = this.messageBuilder.event(eventName).data(msg).id(String(id))
+        const mb: MessageBuidler = this.messageBuilder.event(eventName).data(msg).id(String(id || 0))
         if(this.retryInterval) {
             mb.retry(this.retryInterval)
         }
